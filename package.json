@@ -1,0 +1,14 @@
+{
+  "name": "log-box-core",
+  "version": "0.0.1",
+  "description": "",
+  "main": "./index.js",
+  "scripts": {
+    "test": "node index.js"
+  },
+  "keywords": [
+    "log"
+  ],
+  "author": "baolong",
+  "license": "ISC"
+}
