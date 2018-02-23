@@ -47,7 +47,7 @@ let writeBuffer = (buffers, options) => {
 		if (!buf || !buf.buffer) {
 			continue;
 		}
-		let filepath = `${ options.dataRoot }/${ options.name }/${ date }` + (typeof buf.level != "undefined" && buf.level ? `/${ buf.level }` : "");
+		let filepath = `${ options.dataRoot }/${ options.name }/` + (typeof buf.level != "undefined" && buf.level ? `${ buf.level }/` : "") + `${ date }`;
 		if (!fs.existsSync(filepath)) {
 			mkdirsSync(filepath);
 		}

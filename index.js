@@ -2,16 +2,29 @@ const dgram = require('dgram');
 let LBC_Buffer = require('./buffer');
 
 module.exports = new class LBC {
-	constructor() {
-		this.servers = [];
+	constructor() {		
+		this.logLevels = {
+			0: "emergency",
+			1: "alert",
+			2: "critical",
+			3: "error",
+			4: "warning",
+			5: "notice",
+			6: "info",
+			7: "debug",
+			100: "default"
+		}
+
 		/**
 		 * servers = [{
 		 * 	name, address, port, dataRoot, slicing
 		 * }]
 		 */
+		this.servers = [];		
 	}
 
 	startServer(name, port, address = "0.0.0.0", dataRoot = "./", options = {}) {
+		let _this = this;
 		if (!name) {
 			throw new Error(`name is required`);
 		}
@@ -39,11 +52,12 @@ module.exports = new class LBC {
 		server.on('message', (msg, rinfo) => {
 			const address = server.address();
 			msg = msg.toString();
-			let tmp = msg.match(/\[(....)\](.*)/);
-			if (tmp) {
-				server.buffer.addBuffer(tmp[2], tmp[1]);
+			let tmp = msg.match(/\<(\d*)\>(.*)/);
+			if (tmp && tmp.length >= 2) {
+				let code = parseInt(tmp[1]) - 184;
+				server.buffer.addBuffer(msg, _this.logLevels[code.toString()]);
 			} else if (msg) {
-				server.buffer.addBuffer(msg);
+				server.buffer.addBuffer(msg, _this.logLevels[100]);   // 接收到的日志没有指定日志级别，则为default级别
 			}
 
 		  server.receive instanceof Function && server.receive(msg, rinfo);
