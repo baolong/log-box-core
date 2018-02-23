@@ -1,6 +1,10 @@
 let fs = require("fs");
 let path = require("path");
 
+
+/**
+ * [mkdirsSync 递归创建文件夹]
+ */
 function mkdirsSync(dirname, mode){
 	if(fs.existsSync(dirname)){
 		return true;
@@ -12,7 +16,9 @@ function mkdirsSync(dirname, mode){
 	}
 }
 
-
+/**
+ * [Format 日期格式化]
+ */
 Date.prototype.Format = function (fmt) { //author: meizz 
 	var o = {
 	    "M+": this.getMonth() + 1, //月份 
@@ -30,6 +36,9 @@ Date.prototype.Format = function (fmt) { //author: meizz
 }
 
 
+/**
+ * [writeBuffer 将缓存写入文件]
+ */
 let writeBuffer = (buffers, options) => {
 	let date = new Date().Format("yyyy-MM-dd");	
 	

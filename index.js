@@ -6,7 +6,7 @@ module.exports = new class LBC {
 		this.servers = [];
 		/**
 		 * servers = [{
-		 * 	dgram, name, address, port, dataRoot, logLevels, slicing
+		 * 	name, address, port, dataRoot, slicing
 		 * }]
 		 */
 	}
@@ -39,7 +39,6 @@ module.exports = new class LBC {
 		server.on('message', (msg, rinfo) => {
 			const address = server.address();
 			msg = msg.toString();
-			// do something
 			let tmp = msg.match(/\[(....)\](.*)/);
 			if (tmp) {
 				server.buffer.addBuffer(tmp[2], tmp[1]);

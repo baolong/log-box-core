@@ -4,7 +4,6 @@ module.exports = class LBC_Buffer {
 		logLevels: ["DEBUG", "ERROR", "FATAL", "INFO", "TRACE", "WARN", "ALERT"],    // 根据这些日志级别分别存储不同级别的日志
 		period: 60*10,   // 保存周期，即period秒自动将日志写入文件
 		maxSizePerFile: 1024*1024*10,   // 单个日志文件最大默认为10M
-
 	}) {
 		let _this = this;
 		if (!name) {
