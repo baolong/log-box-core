@@ -1,8 +1,15 @@
 # log-box-core 基于Nodejs的日志收集服务插件
+#### 基于Nodejs的日志收集服务插件
+***
+Nodejs客户端插件：[log-box-cli](https://www.npmjs.com/package/log-box-cli)
 
-使用方法：
+### 安装：
 
-LBC.startServer("日志服务名", port, ip, "日志保存路径", options);
+```javascript
+npm install log-box-core;
+```
+
+### 使用方法：
 
 ```javascript
 let LBC = require('log-box-core');
@@ -18,3 +25,17 @@ logServer.receive = (msg, info) => {
 	console.log(msg);
 }
 ```
+
+
+API：
+
+	/**
+	 * @param String name   必填  服务名称（唯一）
+	 * @param String port   必填  端口
+	 * @param String ip    必填  绑定到本地的某个IP地址
+	 * @param String dataRoot 必填  日志根目录
+	 * @param String options  非必填  其它配置项
+	 * @param String options.period  非必填  缓存的保存周期，单位：秒，默认为10分钟
+	 * @param String options.maxSizePerFile  非必填  单个日志文件最大字节数，默认为10M
+	 **/
+	LBC.startServer(name, port, ip, dataRoot, options);

@@ -1,6 +1,6 @@
 {
   "name": "log-box-core",
-  "version": "0.0.3",
+  "version": "0.0.4",
   "description": "基于Nodejs的日志收集服务插件",
   "main": "./index.js",
   "scripts": {
