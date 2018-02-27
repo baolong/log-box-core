@@ -1,7 +1,7 @@
 {
   "name": "log-box-core",
-  "version": "0.0.1",
-  "description": "",
+  "version": "0.0.3",
+  "description": "基于Nodejs的日志收集服务插件",
   "main": "./index.js",
   "scripts": {
     "test": "node index.js"
@@ -18,5 +18,9 @@
   ],
   "author": "baolong",
   "homepage": "https://github.com/baolong/log-box-core",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/baolong/log-box-core.git"
+  },
   "license": "BSD"
 }

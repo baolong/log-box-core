@@ -1,4 +1,4 @@
-# log-box-core 日志收集服务核心插件
+# log-box-core 基于Nodejs的日志收集服务插件
 
 使用方法：
 
