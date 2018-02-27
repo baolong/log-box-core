@@ -6,9 +6,17 @@
   "scripts": {
     "test": "node index.js"
   },
+  "engines": {
+    "node": ">=6.0.0"
+  },
   "keywords": [
-    "log"
+    "log",
+    "logger",
+    "log-box",
+    "log-box-core",
+    "nodejs"
   ],
   "author": "baolong",
-  "license": "ISC"
+  "homepage": "https://github.com/baolong/log-box-core",
+  "license": "BSD"
 }
