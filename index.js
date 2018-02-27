@@ -55,12 +55,15 @@ module.exports = new class LBC {
 			let tmp = msg.match(/\<(\d*)\>(.*)/);
 			if (tmp && tmp.length >= 2) {
 				let code = parseInt(tmp[1]) - 184;
-				server.buffer.addBuffer(msg, _this.logLevels[code.toString()]);
+				let level = _this.logLevels[code.toString()] || _this.logLevels[100];
+				server.buffer.addBuffer(msg, level);
 			} else if (msg) {
 				server.buffer.addBuffer(msg, _this.logLevels[100]);   // 接收到的日志没有指定日志级别，则为default级别
 			}
 
-		  server.receive instanceof Function && server.receive(msg, rinfo);
+		  server.receive instanceof Function && server.receive(msg, rinfo, {
+		  	name: server.options.name
+		  });
 		});
 
 		server.on('listening', () => {
