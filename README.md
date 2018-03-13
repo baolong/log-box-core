@@ -21,7 +21,7 @@ let logServer = LBC.startServer("aaa", 9997, "0.0.0.0", "./log", {
 });
 
 // 监听日志收集回调，可用于实时获取日志并显示在后台
-logServer.receive = (msg, info) => {
+logServer.receive = (msg, info, serverInfo) => {
 	console.log(msg);
 }
 ```
@@ -39,3 +39,21 @@ API：
 	 * @param String options.maxSizePerFile  非必填  单个日志文件最大字节数，默认为10M
 	 **/
 	LBC.startServer(name, port, ip, dataRoot, options);
+
+
+
+	/**
+	 * @param String msg        日志原始内容
+	 * @param String info       日志信息
+	 * @param String serverInfo     服务信息
+	 * @param String serverInfo.name      服务名
+	 * @param String serverInfo.port      端口
+	 * @param String serverInfo.address   绑定的IP地址
+	 * @param String serverInfo.dataRoot  日志文件根路径
+	 * @param String serverInfo.period    缓存周期
+	 * @param String serverInfo.maxSizePerFile     当个文件最大限制
+	 **/
+	LBC.receive(function(msg, info, serverInfo) {
+		console.log(msg);
+		console.log(serverInfo);
+	});

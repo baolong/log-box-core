@@ -61,9 +61,14 @@ module.exports = new class LBC {
 				server.buffer.addBuffer(msg, _this.logLevels[100]);   // 接收到的日志没有指定日志级别，则为default级别
 			}
 
-		  server.receive instanceof Function && server.receive(msg, rinfo, {
-		  	name: server.options.name
-		  });
+			server.receive instanceof Function && server.receive(msg, rinfo, {
+				name: server.options.name,
+				port: server.options.port,
+				address: server.options.address,
+				dataRoot: server.options.dataRoot,
+				period: server.options.options.period,
+				maxSizePerFile: server.options.options.maxSizePerFile
+			});
 		});
 
 		server.on('listening', () => {

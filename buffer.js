@@ -21,11 +21,13 @@ module.exports = class LBC_Buffer {
 
 		this.IOInstance = new IO(this.options.name, this.options.dataRoot, { maxSizePerFile: this.options.maxSizePerFile });
 
-		this.timer = setInterval(function() {
-			for (let level in _this.buffers) {
-				_this.writeLog(level);
-			}
-		}, this.options.period * 1000);
+		if (this.options.period) {
+			this.timer = setInterval(function() {
+				for (let level in _this.buffers) {
+					_this.writeLog(level);
+				}
+			}, this.options.period * 1000);
+		}
 	}
 
 
@@ -35,6 +37,9 @@ module.exports = class LBC_Buffer {
 		}
 		this.buffers[level] = this.buffers[level] || [];
 		this.buffers[level].push(str);
+		if (!this.options.period) {
+			this.writeLog(level);
+		}
 	}
 
 
