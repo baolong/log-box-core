@@ -51,11 +51,11 @@ module.exports = new class LBC {
 
 		server.on('message', (msg, rinfo) => {
 			const address = server.address();
-			msg = msg.toString();
-			let tmp = msg.match(/\<(\d*)\>(.*)/);
+			msg = msg.toString();			
+			let tmp = msg.match(/\<([a-zA-Z0-9]*)\>(.*)/);
 			if (tmp && tmp.length >= 2) {
 				let code = parseInt(tmp[1]) - 184;
-				let level = _this.logLevels[code.toString()] || _this.logLevels[100];
+				let level = _this.logLevels[code.toString()] || tmp[1];
 				server.buffer.addBuffer(msg, level);
 			} else if (msg) {
 				server.buffer.addBuffer(msg, _this.logLevels[100]);   // 接收到的日志没有指定日志级别，则为default级别
